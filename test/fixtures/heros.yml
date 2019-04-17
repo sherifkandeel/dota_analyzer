@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  herald_pick: 1
+  herald_win: 1
+  guardian_pick: 1
+  guardian_win: 1
+  crusader_pick: 1
+  crusader_win: 1
+  archon_pick: 1
+  archon_win: 1
+  legend_pick: 1
+  legend_win: 1
+  ancient_pick: 1
+  ancient_win: 1
+  divine_pick: 1
+  divine_win: 1
+  immortal_pick: 1
+  immortal_ban: 1
+  immortal_win: 1
+
+two:
+  name: MyString
+  herald_pick: 1
+  herald_win: 1
+  guardian_pick: 1
+  guardian_win: 1
+  crusader_pick: 1
+  crusader_win: 1
+  archon_pick: 1
+  archon_win: 1
+  legend_pick: 1
+  legend_win: 1
+  ancient_pick: 1
+  ancient_win: 1
+  divine_pick: 1
+  divine_win: 1
+  immortal_pick: 1
+  immortal_ban: 1
+  immortal_win: 1

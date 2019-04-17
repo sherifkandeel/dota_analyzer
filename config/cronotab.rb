@@ -1,0 +1,1 @@
+Crono.perform(HeroCronJob).every 2.minutes

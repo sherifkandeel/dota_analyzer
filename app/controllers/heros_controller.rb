@@ -1,0 +1,3 @@
+class HerosController < ApplicationController
+
+end

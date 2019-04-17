@@ -10,10 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_27_001655) do
+ActiveRecord::Schema.define(version: 2019_04_10_182549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "crono_jobs", force: :cascade do |t|
+    t.string "job_id", null: false
+    t.text "log"
+    t.datetime "last_performed_at"
+    t.boolean "healthy"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_crono_jobs_on_job_id", unique: true
+  end
+
+  create_table "heros", force: :cascade do |t|
+    t.string "name"
+    t.integer "herald_pick"
+    t.integer "herald_win"
+    t.integer "guardian_pick"
+    t.integer "guardian_win"
+    t.integer "crusader_pick"
+    t.integer "crusader_win"
+    t.integer "archon_pick"
+    t.integer "archon_win"
+    t.integer "legend_pick"
+    t.integer "legend_win"
+    t.integer "ancient_pick"
+    t.integer "ancient_win"
+    t.integer "divine_pick"
+    t.integer "divine_win"
+    t.integer "immortal_pick"
+    t.integer "immortal_ban"
+    t.integer "immortal_win"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_heros_on_name"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "uid"
