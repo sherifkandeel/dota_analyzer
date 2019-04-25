@@ -15,6 +15,7 @@ gem 'bootstrap-sass'
 gem 'omniauth-steam'
 gem 'rest-client'
 gem 'crono'
+gem 'dota', '~> 0.0.21'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
