@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_10_182549) do
+ActiveRecord::Schema.define(version: 2019_04_24_192411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_04_10_182549) do
   end
 
   create_table "heros", force: :cascade do |t|
-    t.string "name"
+    t.string "localized_name"
     t.integer "herald_pick"
     t.integer "herald_win"
     t.integer "guardian_pick"
@@ -42,11 +42,21 @@ ActiveRecord::Schema.define(version: 2019_04_10_182549) do
     t.integer "divine_pick"
     t.integer "divine_win"
     t.integer "immortal_pick"
-    t.integer "immortal_ban"
     t.integer "immortal_win"
+    t.integer "pro_pick"
+    t.integer "pro_win"
+    t.integer "pro_ban"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_heros_on_name"
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.string "winner"
+    t.string "slot"
+    t.integer "hero_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

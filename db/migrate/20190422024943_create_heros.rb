@@ -1,7 +1,7 @@
 class CreateHeros < ActiveRecord::Migration[5.2]
   def change
     create_table :heros do |t|
-      t.string :name
+      t.string :localized_name
       t.integer :herald_pick
       t.integer :herald_win
       t.integer :guardian_pick
@@ -17,8 +17,10 @@ class CreateHeros < ActiveRecord::Migration[5.2]
       t.integer :divine_pick
       t.integer :divine_win
       t.integer :immortal_pick
-      t.integer :immortal_ban
       t.integer :immortal_win
+      t.integer :pro_pick
+      t.integer :pro_win
+      t.integer :pro_ban
 
       t.timestamps
     end

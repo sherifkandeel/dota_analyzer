@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  winner: MyString
+  slot: MyString
+  hero_id: 1
+  user_id: 1
+
+two:
+  winner: MyString
+  slot: MyString
+  hero_id: 1
+  user_id: 1
