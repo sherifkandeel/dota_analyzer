@@ -23,4 +23,16 @@ class User < ApplicationRecord
 		end
 		get_matches(after_id: matches.last.id) if Time.now - matches.last.starts_at < duration && matches.size == 100
 	end
+
+	def count_win_rates
+		matches = self.matches
+		heros = Hero.all
+		win_rates = Hash.new
+		heros.each { |hero| win_rates[hero.id] = {name: hero.localized_name, pick: 0,win: 0} }
+		matches.each do |match|
+			win_rates[match.hero_id][:pick] += 1
+			win_rates[match.hero_id][:win] += 1 if match.winner == match.slot
+		end
+		win_rates
+	end
 end

@@ -1,0 +1,35 @@
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script>
+$(document).ready( function () {
+    $('#hero_table').DataTable({
+      "paging":   true,
+      "lengthMenu": [[-1, 25, 50, 100], ["All", 25, 50, 100]]
+    });
+} );
+</script>
+<% page_header 'Hero Stats' %>
+<%= render "hero_table_filter" %>
+<table id="hero_table" class="cell-border table table-striped table-hover pull-left">
+<thead>
+  <tr>
+    <th title = "Hero Name"> <%= "Hero" %> </th>
+    <% @table_headers.each do |header| %>
+      <th id="<%= header.split(" ").first %>" name='cell' title = "<%= header %>" > 
+        <%= header.split(" ")[0][0] + " "+ header.split(" ")[1][0] %> 
+      </th>
+    <% end %>
+  </tr>
+</thead>
+<tbody>
+  <% @heros.each do |hero| %>
+    <tr>
+      <td> <%= hero.localized_name %> <br><%=  image_tag "heroes/#{hero.id.to_s}.png" %></td>
+      <% @table_headers.each_with_index do |header, i| %>
+        <td name='cell' id="<%= header.split(" ").first %>" title = "<%= hero.localized_name + " " + header %> ">  
+          <%= hero[@attribute_name[i]] %> 
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</tbody>
+</table>

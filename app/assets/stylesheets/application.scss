@@ -21,4 +21,34 @@ nav {
     img {
       max-width: 48px;
     }
-  }
+}
+
+filter-font {
+  font-size:18px;
+}
+
+td{
+  white-space: nowrap;
+  overflow:hidden;
+}
+
+th{
+  white-space: nowrap;
+  overflow:hidden;
+}
+
+center-wrap {
+  text-align: center;
+  margin:auto;
+  display:block;
+}
+
+filter-button {
+  background-color: #555555; 
+  border: none;
+  color: white;
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+}
