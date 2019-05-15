@@ -6,3 +6,9 @@ COPY Gemfile /dota_analyzer/Gemfile
 COPY Gemfile.lock /dota_analyzer/Gemfile.lock
 RUN bundle install
 COPY . /dota_analyzer
+
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+EXPOSE 3000
+CMD ["rails", "server", "-b", "0.0.0.0"]

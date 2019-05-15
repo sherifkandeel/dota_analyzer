@@ -1,11 +1,14 @@
 class ApplicationController < ActionController::Base
-	
-	helper_method :current_user
-	
-	private
-	
-	def current_user
-  	return nil unless session[:user_id]
-  	@current_user ||= User.find_by(id: session[:user_id])
-	end
+	protect_from_forgery with: :exception
+  include SessionsHelper
+  include UsersHelper
+
+  private
+  
+	def logged_in_user
+    unless logged_in?
+      flash[:danger] = "Please log in."
+      redirect_back(fallback_location: root_path)
+    end
+  end
 end

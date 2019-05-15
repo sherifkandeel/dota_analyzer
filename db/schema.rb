@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_24_192411) do
+ActiveRecord::Schema.define(version: 2019_05_12_034637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,8 +55,10 @@ ActiveRecord::Schema.define(version: 2019_04_24_192411) do
     t.string "slot"
     t.integer "hero_id"
     t.integer "user_id"
+    t.datetime "starts_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["starts_at"], name: "index_matches_on_starts_at"
   end
 
   create_table "users", force: :cascade do |t|

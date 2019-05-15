@@ -16,15 +16,13 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 @import 'bootstrap/theme';
+@import 'w3';
+@import 'jquery.dataTables';
 
 nav {
     img {
       max-width: 48px;
     }
-}
-
-filter-font {
-  font-size:18px;
 }
 
 td{
@@ -35,6 +33,10 @@ td{
 th{
   white-space: nowrap;
   overflow:hidden;
+}
+
+filter-font {
+  font-size:18px;
 }
 
 center-wrap {

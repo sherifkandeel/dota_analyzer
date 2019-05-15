@@ -1,4 +1,4 @@
-class HeroCronJob < ActiveJob::Base
+class UpdateHerosTable < ActiveJob::Base
 
 	def perform
 		heros = parse_response RestClient.get 'https://api.opendota.com/api/herostats'

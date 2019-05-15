@@ -7,7 +7,8 @@ class SessionsController < ApplicationController
     rescue
       flash[:error] = "Can't authorize you..."
     else
-      session[:user_id] = @user.id
+      log_in(@user)
+      @user.get_matches
       flash[:success] = "Welcome, #{@user.nickname}!"
     end
     redirect_to root_path
@@ -15,7 +16,7 @@ class SessionsController < ApplicationController
 
   def destroy
     if current_user
-      session.delete(:user_id)
+      log_out if logged_in?
       flash[:success] = "Goodbye!"
     end
     redirect_to root_path
