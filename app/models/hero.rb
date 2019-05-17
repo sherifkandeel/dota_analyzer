@@ -1,9 +1,9 @@
 class Hero < ApplicationRecord
   validates :id, :localized_name, presence: true, uniqueness: true
-  Hero.attribute_names - ['id', 'localized_name', 'updated_at','created_at'].each do |attribute_name|
+  (Hero.attribute_names - ['id', 'localized_name', 'updated_at','created_at']).each do |attribute_name|
     validates  attribute_name.to_sym,  presence: true, numericality: { only_integer: true }
   end
-  
+
   def self.table_data
     heros = Hero.all
     data = Hash.new

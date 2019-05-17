@@ -1,15 +1,25 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: db
+  url: <%= ENV['DATABASE_URL'] %>
   username: postgres
   password:
   pool: 5
 
-development:
-  <<: *default
-  database: dota_analyzer_development
+# development:
+#   adapter: postgresql
+#   encoding: unicode
+#   username: postgres
+#   password:
+#   pool: 5
+#   host: db
+#   database: dota_analyzer_development
 
-test:
+# test:
+#   <<: *default
+#   database: dota_analyzer_test
+
+production:
   <<: *default
-  database: dota_analyzer_test
+  database: dota_analyzer_production
+ 
