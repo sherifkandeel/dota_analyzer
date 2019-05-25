@@ -1,6 +1,5 @@
 class User < ApplicationRecord
-
-	has_many :matches
+	has_and_belongs_to_many :matches
 	validates :uid, presence: true, uniqueness: true
 
   def self.from_omniauth auth
@@ -15,32 +14,22 @@ class User < ApplicationRecord
   end
 
 	def get_matches duration: 30.days, after_id: nil
-		matches = Dota.api.matches(player_id: self.uid, after: after_id)
-		matches.each do |m|
-			break unless (Time.now - m.starts_at) <= duration	
-			player = get_player m
-			if Match.exists?(m.id)
+		ApiCalls.get_user_matches(self.uid).each do |m|
+			break if (Time.now - m.starts_at) > duration
+			match = Match.find_or_create_by(id: m.id, winner: m.winner, starts_at: m.starts_at)
+			unless self.matches.exists?(m.id)
+				self.matches << match
+			else #This and all next matches are already saved
 				break
-			else
-				self.matches.create(id: m.id, 
-														user_id: uid, 
-														slot: get_slot(m), 
-														winner: m.winner, 
-														starts_at: m.starts_at,
-														hero_id: player["hero_id"]
-														) 
+			end
+			if(match.players.empty?)
+				m.raw["players"].each do |p|
+					if p["account_id"] != 4294967295
+						match.players.create(user_id: p["account_id"].to_s, hero_id: p["hero_id"], slot: p["player_slot"] < 5 ? :radiant : :dire)
+					end
+				end
 			end
 		end
-		get_matches(after_id: matches.last.id) if Time.now - matches.last.starts_at < duration && matches.size == 100
-	end
-
-	def get_player match
-		player = match.raw["players"].find { |player| player["account_id"].to_s == self.uid }
-	end
-
-	def get_slot match
-		player = get_player match
-		player["player_slot"] < 5 ?  :radiant : :dire 
 	end
 
 	def table_data
@@ -51,12 +40,17 @@ class User < ApplicationRecord
 		headers = [["Your Pick", "your_pick", "Y P"], ["Your Win", "your_win", "Y W"]]
 		heros.each { |hero| win_rates[hero.id] = {name: hero.localized_name, your_pick: 0, your_win: 0} }
 		matches.each do |match|
-			win_rates[match.hero_id][:your_pick] += 1
-			win_rates[match.hero_id][:your_win] += 1 if match.winner == match.slot
+			player = get_player match
+			win_rates[player.hero_id][:your_pick] += 1
+			win_rates[player.hero_id][:your_win] += 1 if match.winner == player.slot
 		end
 		data[:headers_data] = headers
 		data[:body_data] = win_rates
 		data[:totals] = {:your_pick => win_rates.to_a.sum { |h| h.second[:your_pick]}}
 		data
+	end
+
+	def get_player match
+		match.players.find {|player| player.user_id == self.uid}
 	end
 end

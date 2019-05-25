@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_12_034637) do
+ActiveRecord::Schema.define(version: 2019_05_19_102117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,17 +48,32 @@ ActiveRecord::Schema.define(version: 2019_05_12_034637) do
     t.integer "pro_ban"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["localized_name"], name: "index_heros_on_localized_name"
   end
 
   create_table "matches", force: :cascade do |t|
     t.string "winner"
-    t.string "slot"
-    t.integer "hero_id"
-    t.integer "user_id"
     t.datetime "starts_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["starts_at"], name: "index_matches_on_starts_at"
+  end
+
+  create_table "matches_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "match_id", null: false
+    t.index ["user_id", "match_id"], name: "index_matches_users_on_user_id_and_match_id", unique: true
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.string "slot"
+    t.integer "hero_id"
+    t.string "user_id"
+    t.bigint "match_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["match_id", "user_id"], name: "index_players_on_match_id_and_user_id", unique: true
+    t.index ["match_id"], name: "index_players_on_match_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -71,4 +86,5 @@ ActiveRecord::Schema.define(version: 2019_05_12_034637) do
     t.index ["uid"], name: "index_users_on_uid", unique: true
   end
 
+  add_foreign_key "players", "matches"
 end

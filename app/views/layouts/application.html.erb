@@ -1,7 +1,13 @@
 <%= csrf_meta_tags %>
+<script src="assets/please_wait.js"></script>
 <meta name="turbolinks-cache-control" content="no-cache">
 <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= favicon_link_tag asset_path('dota_fav.ico') %>
+<%= stylesheet_link_tag 'spinner', media: 'all', 'data-turbolinks-track' => true %>
+
+<div id="spinner" class="loader"> </div>
+<div  id='loading'class='wait'>Please wait while loading your matches </div>
 <nav class="navbar navbar-inverse">
   <div class="container">
     <div class="navbar-header">
@@ -10,8 +16,8 @@
     <div  id="navbar">
       <ul class="nav navbar-nav">
           <li> <%= link_to 'Hero Stats', heros_path %> </li>
-          <li> <%= link_to 'Your Stats', your_stats_path %> </li>
-          <li> <%= link_to 'Meta', meta_path %> </li>
+          <li onclick="add_please_wait()"> <%= link_to 'Your Stats', your_stats_path   %> </li>
+          <li onclick="add_please_wait()"> <%= link_to 'Meta', meta_path %> </li>
       </ul>
        <% if current_user %>
         <ul class="nav navbar-nav pull-right">

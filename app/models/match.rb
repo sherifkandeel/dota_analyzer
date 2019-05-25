@@ -1,5 +1,5 @@
 class Match < ApplicationRecord
-  has_one    :hero
-  belongs_to :user
-  validates :user_id, :id, :slot, :winner, :starts_at, :hero_id, presence: true
+  has_many :players, dependent: :destroy
+  has_and_belongs_to_many :users #, -> { distinct }
+  validates    :winner, :starts_at, presence: true
 end

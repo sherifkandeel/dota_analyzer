@@ -5,10 +5,10 @@ class ApplicationController < ActionController::Base
 
   private
   
-	def logged_in_user
+  def logged_in_user
     unless logged_in?
       flash[:danger] = "Please log in."
-      redirect_back(fallback_location: root_path)
+      redirect_to root_path
     end
   end
 end

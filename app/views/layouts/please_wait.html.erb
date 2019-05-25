@@ -1,0 +1,15 @@
+<script>
+$('.your-stats').bind('ajax:beforeSend', function() {
+  alert("asdasd")
+  jQuery(document).ready(function() {
+  $.get( "/your_stats", function(data) {
+    window.location.replace("/")
+  });
+});
+});
+
+$('.your-stats').bind('ajax:complete', function() {
+  
+});
+
+</script>

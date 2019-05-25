@@ -24,5 +24,6 @@ class CreateHeros < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+    add_index :heros, :localized_name
   end
 end
