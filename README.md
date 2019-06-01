@@ -3,6 +3,8 @@
 A dota 2 containerized rails app that counts player's win-rates of every hero for the last month.
 ## Table of Contents
 * [Installation](#installation)
+    * [Adding Steam Web API Key to Credentials](#adding-steam-web-api-key-to-credentials)
+    * [Deploying To Heroku](#deploying-to-heroku)
 * [API](#api)
 * [Cron Jobs](#cron-jobs)
 * [Usage](#usage)
@@ -23,7 +25,7 @@ $ docker volume create --name=pg-db
 
 If you are not using Docker Desktop on a Windows 10 host then you might want to skip creating the data volume and change the  `docker-compose.yml` to match the `db` service with the one mentioned [here](https://docs.docker.com/compose/rails/).
 
-Create and migrate database.
+Create and migrate database:
 ```sh
 $ docker-compose run web rails db:create db:migrate
 ```
@@ -31,19 +33,19 @@ $ docker-compose run web rails db:create db:migrate
 #
 Get your Steam Web API key from [here](https://steamcommunity.com/dev/apikey), You only need a Steam account for that.
 
-Run the project.
+Run the project:
 ```sh
 $ docker-compose up
 ```
-In a new terminal check for running containers.
+In a new terminal check for running containers:
 ```sh
 $ docker ps
 ```
-Attach a bash session to the `dota_analyzer_web` container.
+Attach a bash session to the `dota_analyzer_web` container:
 ```sh
 $ docker exec -it <container_id>  /bin/bash
 ```
-Install Nano editor inside the conrainer to edit the credentials file.
+Install Nano editor inside the conrainer to edit the credentials file:
 ```sh
 $ apt-get install nano
 $ EDITOR="nano" rails credentials:edit
@@ -52,28 +54,28 @@ This will install Nano and open `config/credentials.yml.enc` as a `yml` file in 
 I.E `STEAM_WEB_API_KEY: 49a6hd0d3900tw9cd5twe51v6070e0c1`
 If You get the message `ActiveSupport::MessageEncryptor::InvalidMessage`  then You should delete both `config/credentials.yml.enc` and `config/master.key` if available and rerun the edit command.
 
-Open rails console to get Hero Stats.
+Open rails console to get Hero Stats:
 ```sh
 $ docker-compose run web rails console
 ```
-Then run the job that updates the Heros table in the database.
+Then run the job that updates the Heros table in the database:
 ```sh
 $ UpdateHerosTable.new.perform
 ```
-That's It use `docker-compose up` and `docker-compose down` to run or exit the server.
+That's it, use `docker-compose up` and `docker-compose down` to run or exit the server.
 
-#### Deploying to Heroku:
+#### Deploying To Heroku:
 #
 Create a Heroku account [here](https://signup.heroku.com/) if You don't have one and log in. Then log in to heroku's container registry.
 ```sh
 $ heroku login
 $ heroku container:login
 ```
-Navigate to the app’s directory and create a Heroku app.
+Navigate to the app’s directory and create a Heroku app:
 ```sh
 $ heroku create
 ```
-Create heroku addon postgres database.
+Create heroku addon postgres database:
 ```sh
 $ heroku addons:create heroku-postgresql:hobby-dev
 ```
@@ -81,28 +83,28 @@ Build the image and push to container registry.
 ```sh
 $ heroku container:push web
 ```
-Then release the image to your app.
+Then release the image to your app:
 ```sh
 $ heroku container:release web
 ```
-Run the database migrations.
+Run the database migrations:
 ```sh
 $ heroku run rails db:migrate
 ```
-Then run the job that updates the Heros table in the database.
+Then run the job that updates the Heros table in the database:
 ```sh
 $ heroku run rails console
 $ UpdateHerosTable.new.perform
 ```
-To run the `crono` process.
+To run the `crono` process:
 ```sh
 $ heroku run bundle exec crono
 ```
-To open the app in your browser.
+To open the app in your browser:
 ```sh
 $ heroku open
 ```
-If the app's `css` is not loaded.
+If the app's `css` is not loaded:
 ```sh
 $ heroku run rails assets:precompile
 ```
