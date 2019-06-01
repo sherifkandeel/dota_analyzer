@@ -2,13 +2,13 @@
 
 A dota 2 containerized rails app that counts player's win-rates of every hero for the last month.
 ## Table of Contents
-1. [Installation](#installation)
-2. [API](#api)
-3. [Cron Jobs](#cron-jobs)
-4. [Usage](#usage)
- a.[Meta Table](#meta-table)
- b.[Hero Table](#hero-table)
- 
+* [Installation](#installation)
+* [API](#api)
+* [Cron Jobs](#cron-jobs)
+* [Usage](#usage)
+    * [Meta Table](#meta-table)
+    * [Hero Table](#hero-table)
+
 ## Installation
 
 Dota Analyzer requires [Docker Desktop](https://www.docker.com/products/docker-desktop) to run.
