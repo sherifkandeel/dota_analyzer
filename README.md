@@ -121,5 +121,5 @@ Dota Analyzer is a simple app, The user can view the `Heros stats` page which is
 ![](app/assets/images/heros.png?raw=true)
 #### Meta Table:
 #
-![](/app/assets/images/meta.png?raw=true)
+![](/app/assets/images/meta.png)
 
