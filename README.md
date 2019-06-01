@@ -1,6 +1,6 @@
 # Dota Analayzer
 
-A dota 2 containerized rails app that counts player's winrates of every hero for the last month.
+A dota 2 containerized rails app that counts player's win-rates of every hero for the last month.
 ## Installation
 
 Dota Analyzer requires [Docker Desktop](https://www.docker.com/products/docker-desktop) to run.
@@ -115,7 +115,7 @@ Dota Analyzer uses the [crono-gem](https://github.com/plashchynski/crono) to run
 To make changes to these jobs check the `app/jobs` folder and `config/crontab.rb` file.
 
 ## Usage
-Dota Analyzer is a simple app, The user can view the `Heros stats` page which is a filterable and sortable table with the stats(number of picks and wins) of every hero in the last months collected from many public matches by [OpenDota](https://docs.opendota.com/). The user can also view his stats in a table for every hero in the last months in the `Your Stats` page. Finally the user can view the data from both tables(`Your stats` and `Hero Stats`) in a third page `Meta` to compare his winrates with the `Hero Stats`. Steam log in is required before entering `Your Stats` or `Meta`.
+Dota Analyzer is a simple app, The user can view the `Heros stats` page which is a filterable and sortable table with the stats(number of picks and wins) of every hero in the last months collected from many public matches by [OpenDota](https://docs.opendota.com/). The user can also view his stats in a table for every hero in the last months in the `Your Stats` page. Finally the user can view the data from both tables(`Your stats` and `Hero Stats`) in a third page `Meta` to compare his win-rates with the `Hero Stats`. Steam log in is required before entering `Your Stats` or `Meta`.
 #### Heros Table:
 #
 ![](app/assets/images/heros.png?raw=true)
