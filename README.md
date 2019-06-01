@@ -1,7 +1,7 @@
 # Dota Analayzer
 
 A dota 2 containerized rails app that counts player's winrates of every hero for the last month.
-### Installation
+## Installation
 
 Dota Analyzer requires [Docker Desktop](https://www.docker.com/products/docker-desktop) to run.
 
@@ -19,7 +19,7 @@ Create and migrate database.
 ```sh
 $ docker-compose run web rails db:create db:migrate
 ```
-##### Adding Steam Web API Key to Credentials:
+#### Adding Steam Web API Key to Credentials:
 #
 Get your Steam Web API key from [here](https://steamcommunity.com/dev/apikey), You only need a Steam account for that.
 
@@ -54,7 +54,7 @@ $ UpdateHerosTable.new.perform
 ```
 That's It use `docker-compose up` and `docker-compose down` to run or exit the server.
 
-##### Deploying to Heroku:
+#### Deploying to Heroku:
 #
 Create a Heroku account [here](https://signup.heroku.com/) if You don't have one and log in. Then log in to heroku's container registry.
 ```sh
@@ -100,10 +100,10 @@ $ heroku run rails assets:precompile
 ```
 To read more visit Heroku's [Container Registry & Runtime (Docker Deploys)](https://devcenter.heroku.com/articles/container-registry-and-runtime)
 
-### API
+## API
 * [OpenDota](https://docs.opendota.com/) - The OpenDota API provides Dota 2 related data.
 * [Dota](https://github.com/vinnicc/dota) - Ruby client for the Dota 2 WebAPI.
-### Cron Jobs
+## Cron Jobs
 Dota Analyzer uses the [crono-gem](https://github.com/plashchynski/crono) to run time-based background jobs.
 
 |        Name          |                      Job                         | 
@@ -114,12 +114,12 @@ Dota Analyzer uses the [crono-gem](https://github.com/plashchynski/crono) to run
 
 To make changes to these jobs check the `app/jobs` folder and `config/crontab.rb` file.
 
-### Usage
+## Usage
 Dota Analyzer is a simple app, The user can view the `Heros stats` page which is a filterable and sortable table with the stats(number of picks and wins) of every hero in the last months collected from many public matches by [OpenDota](https://docs.opendota.com/). The user can also view his stats in a table for every hero in the last months in the `Your Stats` page. Finally the user can view the data from both tables(`Your stats` and `Hero Stats`) in a third page `Meta` to compare his winrates with the `Hero Stats`. Steam log in is required before entering `Your Stats` or `Meta`.
-##### Heros Table:
+#### Heros Table:
 #
 ![](app/assets/images/heros.png?raw=true)
-##### Meta Table:
+#### Meta Table:
 #
 ![](/app/assets/images/meta.png?raw=true)
 
