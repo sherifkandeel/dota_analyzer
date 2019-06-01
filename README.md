@@ -105,11 +105,13 @@ To read more visit Heroku's [Container Registry & Runtime (Docker Deploys)](http
 * [Dota](https://github.com/vinnicc/dota) - Ruby client for the Dota 2 WebAPI.
 ### Cron Jobs
 Dota Analyzer uses the [crono-gem](https://github.com/plashchynski/crono) to run time-based background jobs.
+
 |        Name          |                      Job                         | 
 | -------------------- | ------------------------------------------------ |
 | UpdateHerosTable     | Updates the Heros Stats every 12 hours           |
 | UpdateUsersData      | Updates the User Stats every 2 days              |
 | CleanMatchesTable    | delete matches older than a month every 6 hours  |
+
 To make changes to these jobs check the `app/jobs` folder and `config/crontab.rb` file.
 
 ### Usage
